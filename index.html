@@ -6,6 +6,102 @@
   <title>Hiking Adventures</title>
   <meta name="description" content="Explore thrilling hiking and nature experiences" />
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* 🌄🌲🏖🧗 Activity background themes with real photos */
+    .card:nth-child(1) {
+      background: 
+        linear-gradient(180deg, rgba(168, 164, 164, 0), rgba(243, 238, 238, 0)),
+        url('https://plus.unsplash.com/premium_photo-1661810803959-f91f5195138e?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1170') 
+        center/cover no-repeat;
+      color: #fff;
+    }
+
+    .card:nth-child(2) {
+      background: 
+        linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
+        url('https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=80') 
+        center/cover no-repeat;
+      color: #fff;
+    }
+
+    .card:nth-child(3) {
+      background: 
+        linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
+        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80') 
+        center/cover no-repeat;
+      color: #fff;
+    }
+
+    .card:nth-child(4) {
+      background: 
+        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
+        url('https://images.unsplash.com/photo-1756155114825-60e27047743d?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=687') 
+        center/cover no-repeat;
+      color: #fff;
+    }
+
+    .card h3, .card p {
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .close {
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 8px;
+    }
+
+    .btn-sub, .join-btn {
+      background: #00704A;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 8px;
+    }
+
+    .subscribe {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 40px 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
 </head>
 
 <body>
@@ -64,12 +160,87 @@
       </div>
     </section>
 
-    <!-- SUBSCRIBE BUTTON -->
+    <!-- SUBSCRIBE BUTTONS -->
     <div class="subscribe">
-      <button class="btn-sub" onclick="openModal('subscribe')">Join / Subscribe</button>
+      <button class="btn-sub" onclick="openModal('joinForm')">Join Now</button>
+      <button class="btn-sub" onclick="openModal('subscribe')">View Subscription Plans</button>
     </div>
   </div>
 
-  <!-- ACTIVITY MO
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
 
-  
+  <script>
+    const modal = document.getElementById('modal');
+    const modalBody = document.getElementById('modal-body');
+
+    const activities = {
+      mountain: {
+        title: 'Mountain Trails',
+        desc: 'Conquer majestic peaks with our guided mountain expeditions. Perfect for adventure seekers and fitness enthusiasts.',
+        images: ['https://source.unsplash.com/600x400/?mountain,hiking', 'https://source.unsplash.com/600x400/?mountain,trail']
+      },
+      forest: {
+        title: 'Forest Walks',
+        desc: 'Reconnect with nature on our tranquil forest paths. Breathe in the fresh air and enjoy serene greenery.',
+        images: ['https://source.unsplash.com/600x400/?forest,walk', 'https://source.unsplash.com/600x400/?forest,path']
+      },
+      beach: {
+        title: 'Coastal Treks',
+        desc: 'Experience the ocean breeze and discover hidden beaches along our coastal hiking routes.',
+        images: ['https://source.unsplash.com/600x400/?beach,trek', 'https://source.unsplash.com/600x400/?coast,hike']
+      },
+      adventure: {
+        title: 'Adventure Activities',
+        desc: 'Push your limits with thrilling activities like ziplining, rock climbing, and river rafting!',
+        images: ['https://source.unsplash.com/600x400/?zipline,adventure', 'https://source.unsplash.com/600x400/?climbing,rocks']
+      },
+      subscribe: {
+        title: 'Subscription Plans',
+        desc: `
+          <h3>Choose Your Plan:</h3>
+          <ul>
+            <li><b>Basic:</b> ₹999/month – Access to guided hikes</li>
+            <li><b>Premium:</b> ₹1999/month – Includes adventure activities</li>
+            <li><b>Elite:</b> ₹2999/month – All-access pass + premium gear</li>
+          </ul>
+        `
+      },
+      joinForm: {
+        title: 'Join Now',
+        desc: `
+          <h3>Enter your details:</h3>
+          <input type="text" placeholder="Name" /><br>
+          <input type="number" placeholder="Age" /><br>
+          <input type="email" placeholder="Email" /><br>
+          <button class="join-btn">Submit</button>
+        `
+      }
+    };
+
+    function openModal(type) {
+      const data = activities[type];
+      if (!data) return;
+      modalBody.innerHTML = `
+        <h2>${data.title}</h2>
+        <p>${data.desc}</p>
+        ${data.images ? `<div class="gallery">${data.images.map(img => `<img src="${img}" alt="${data.title}"/>`).join('')}</div>` : ''}
+      `;
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) modal.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
