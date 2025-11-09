@@ -10,6 +10,8 @@
 
 <body>
   <div class="wrap">
+
+    <!-- HEADER -->
     <header>
       <a href="#" class="brand">
         <div class="logo">H</div>
@@ -23,11 +25,23 @@
       </nav>
     </header>
 
-    <section class="hero">
-      <h1>Explore Nature with Us</h1>
-      <p>Join our guided hikes, forest walks, and adventure treks across breathtaking landscapes. Discover your next journey today!</p>
+    <!-- BRAND SUBHEADING -->
+    <section class="brand-info">
+      <h2 class="brand-title">
+        HikeZone <span class="by-kisco" onclick="openBrandModal()">by Kisco</span>
+      </h2>
     </section>
 
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <h1>Explore Nature with Us</h1>
+      <p>
+        Join our guided hikes, forest walks, and adventure treks across breathtaking landscapes.
+        Discover your next journey today!
+      </p>
+    </section>
+
+    <!-- ACTIVITIES SECTION -->
     <section class="activities">
       <h2 class="section-title">Our Programs</h2>
       <div class="grid">
@@ -50,127 +64,12 @@
       </div>
     </section>
 
+    <!-- SUBSCRIBE BUTTON -->
     <div class="subscribe">
       <button class="btn-sub" onclick="openModal('subscribe')">Join / Subscribe</button>
     </div>
   </div>
 
-  <!-- Modal structure -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <div id="modal-body"></div>
-    </div>
-  </div>
+  <!-- ACTIVITY MO
 
-  <script>
-    const modal = document.getElementById('modal');
-    const modalBody = document.getElementById('modal-body');
-
-    const activities = {
-      mountain: {
-        title: 'Mountain Trails',
-        desc: 'Conquer majestic peaks with our guided mountain expeditions. Perfect for adventure seekers and fitness enthusiasts.',
-        images: ['https://source.unsplash.com/600x400/?mountain,hiking', 'https://source.unsplash.com/600x400/?mountain,trail']
-      },
-      forest: {
-        title: 'Forest Walks',
-        desc: 'Reconnect with nature on our tranquil forest paths. Breathe in the fresh air and enjoy serene greenery.',
-        images: ['https://source.unsplash.com/600x400/?forest,walk', 'https://source.unsplash.com/600x400/?forest,path']
-      },
-      beach: {
-        title: 'Coastal Treks',
-        desc: 'Experience the ocean breeze and discover hidden beaches along our coastal hiking routes.',
-        images: ['https://source.unsplash.com/600x400/?beach,trek', 'https://source.unsplash.com/600x400/?coast,hike']
-      },
-      adventure: {
-        title: 'Adventure Activities',
-        desc: 'Push your limits with thrilling activities like ziplining, rock climbing, and river rafting!',
-        images: ['https://source.unsplash.com/600x400/?zipline,adventure', 'https://source.unsplash.com/600x400/?climbing,rocks']
-      },
-      subscribe: {
-        title: 'Join or Subscribe',
-        desc: `
-          <h3>Subscription Plans:</h3>
-          <ul>
-            <li><b>Basic:</b> ₹999/month – Access to guided hikes</li>
-            <li><b>Premium:</b> ₹1999/month – Includes adventure activities</li>
-            <li><b>Elite:</b> ₹2999/month – All-access pass + premium gear</li>
-          </ul>
-          <button onclick="showJoinForm()" class="join-btn">Join Now</button>
-          <div id="join-form" style="display:none;margin-top:16px;">
-            <h3>Enter your details:</h3>
-            <input type="text" placeholder="Name" /><br>
-            <input type="number" placeholder="Age" /><br>
-            <input type="email" placeholder="Email" /><br>
-            <button class="join-btn">Submit</button>
-          </div>
-        `
-      }
-    };
-
-    function openModal(type) {
-      const data = activities[type];
-      if (!data) return;
-      modalBody.innerHTML = `
-        <h2>${data.title}</h2>
-        <p>${data.desc}</p>
-        ${data.images ? `<div class="gallery">${data.images.map(img => `<img src="${img}" alt="${data.title}"/>`).join('')}</div>` : data.desc}
-      `;
-      modal.style.display = 'flex';
-    }
-
-    function closeModal() {
-      modal.style.display = 'none';
-    }
-
-    function showJoinForm() {
-      document.getElementById('join-form').style.display = 'block';
-    }
-
-    window.onclick = function(event) {
-      if (event.target == modal) modal.style.display = 'none';
-    }
-  </script>
-</body>
-</html>
-<style>
-/* 🌄🌲🏖🧗 Activity background themes with real photos */
-.card:nth-child(1) {
-  background: 
-    linear-gradient(180deg, rgba(168, 164, 164, 0), rgba(243, 238, 238, 0)),
-    url('https://plus.unsplash.com/premium_photo-1661810803959-f91f5195138e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170') 
-    center/cover no-repeat;
-  color: #fff;
-}
-
-.card:nth-child(2) {
-  background: 
-    linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
-    url('https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=80') 
-    center/cover no-repeat;
-  color: #fff;
-}
-
-.card:nth-child(3) {
-  background: 
-    linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
-    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80') 
-    center/cover no-repeat;
-  color: #fff;
-}
-
-.card:nth-child(4) {
-  background: 
-    linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
-    url('https://images.unsplash.com/photo-1756155114825-60e27047743d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687') 
-    center/cover no-repeat;
-  color: #fff;
-}
-
-/* Text visibility enhancement */
-.card h3, 
-.card p {
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-}
-</style>
+  
