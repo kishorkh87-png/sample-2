@@ -1,216 +1,136 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hike With Nature</title>
-  <style>
-    :root {
-      --accent: #2563eb;
-      --bg-overlay: rgba(0, 0, 0, 0.4);
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --rounded: 12px;
-      font-family: "Segoe UI", Roboto, sans-serif;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      min-height: 100vh;
-      background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
-      color: #fff;
-      position: relative;
-    }
-
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: var(--bg-overlay);
-    }
-
-    header {
-      position: relative;
-      text-align: center;
-      padding: 2rem 1rem;
-      z-index: 1;
-    }
-
-    header h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.1rem;
-      color: #e2e8f0;
-    }
-
-    .desc-slider {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      gap: 1rem;
-      padding: 2rem 1rem;
-      scrollbar-width: none;
-    }
-
-    .desc-slider::-webkit-scrollbar { display: none; }
-
-    .card {
-      flex: 0 0 80%;
-      background: var(--card-bg);
-      color: #0f172a;
-      border-radius: var(--rounded);
-      padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      min-width: 260px;
-    }
-
-    .card h3 {
-      margin-bottom: 0.5rem;
-      color: var(--accent);
-    }
-
-    .actions {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      margin: 2rem 0;
-    }
-
-    .btn {
-      background: var(--accent);
-      border: none;
-      color: white;
-      padding: 0.8rem 1.6rem;
-      margin: 0.5rem;
-      border-radius: var(--rounded);
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .btn:hover {
-      background: #1e40af;
-    }
-
-    /* Modal Styles */
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-    }
-
-    .modal-content {
-      background: white;
-      color: #0f172a;
-      border-radius: var(--rounded);
-      padding: 2rem;
-      width: 90%;
-      max-width: 400px;
-      text-align: left;
-    }
-
-    .modal-content h2 {
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-
-    .modal-content input {
-      width: 100%;
-      margin-bottom: 0.8rem;
-      padding: 0.6rem;
-      border: 1px solid #cbd5e1;
-      border-radius: var(--rounded);
-    }
-
-    .close {
-      float: right;
-      cursor: pointer;
-      color: #64748b;
-      font-size: 1.4rem;
-    }
-
-    .close:hover { color: #0f172a; }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hiking Adventures</title>
+  <meta name="description" content="Explore thrilling hiking and nature experiences" />
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="overlay"></div>
-  <header>
-    <h1>Hike With Nature</h1>
-    <p>Experience breathtaking adventures and connect with the outdoors</p>
-  </header>
+  <div class="wrap">
+    <header>
+      <a href="#" class="brand">
+        <div class="logo">H</div>
+        <h2>HikeZone</h2>
+      </a>
+      <nav>
+        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link">Activities</a>
+        <a href="#" class="nav-link">Gallery</a>
+        <a href="#" class="cta">Join Now</a>
+      </nav>
+    </header>
 
-  <section class="desc-slider">
-    <div class="card">
-      <h3>Mountain Trails</h3>
-      <p>Explore rugged terrains and witness sunrise from breathtaking peaks.</p>
-    </div>
-    <div class="card">
-      <h3>Forest Walks</h3>
-      <p>Wander through lush green forests and enjoy the music of nature.</p>
-    </div>
-    <div class="card">
-      <h3>River Adventures</h3>
-      <p>Cross sparkling rivers and camp under starry skies beside crystal streams.</p>
-    </div>
-  </section>
+    <section class="hero">
+      <h1>Explore Nature with Us</h1>
+      <p>Join our guided hikes, forest walks, and adventure treks across breathtaking landscapes. Discover your next journey today!</p>
+    </section>
 
-  <div class="actions">
-    <button class="btn" id="joinBtn">Join</button>
-    <button class="btn" id="subscribeBtn">Subscribe</button>
+    <section class="activities">
+      <h2 class="section-title">Our Programs</h2>
+      <div class="grid">
+        <div class="card" onclick="openModal('mountain')">
+          <h3>🏔 Mountain Trails</h3>
+          <p>High-altitude adventures for the brave-hearted.</p>
+        </div>
+        <div class="card" onclick="openModal('forest')">
+          <h3>🌲 Forest Walks</h3>
+          <p>Peaceful trails under lush green canopies.</p>
+        </div>
+        <div class="card" onclick="openModal('beach')">
+          <h3>🏖 Coastal Treks</h3>
+          <p>Walk along scenic shorelines and cliffs.</p>
+        </div>
+        <div class="card" onclick="openModal('adventure')">
+          <h3>🧗 Adventure Activities</h3>
+          <p>Ziplining, rock climbing, and more fun challenges!</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="subscribe">
+      <button class="btn-sub" onclick="openModal('subscribe')">Join / Subscribe</button>
+    </div>
   </div>
 
-  <!-- Join Modal -->
-  <div class="modal" id="joinModal">
+  <!-- Modal structure -->
+  <div id="modal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal('joinModal')">&times;</span>
-      <h2>Join Our Hiking Program</h2>
-      <input type="text" placeholder="Full Name" />
-      <input type="number" placeholder="Age" />
-      <input type="email" placeholder="Email" />
-      <button class="btn">Submit</button>
-    </div>
-  </div>
-
-  <!-- Subscription Modal -->
-  <div class="modal" id="subscribeModal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('subscribeModal')">&times;</span>
-      <h2>Subscription Plans</h2>
-      <p><strong>Basic:</strong> $10/month - Access to weekend hikes</p>
-      <p><strong>Premium:</strong> $25/month - Includes camping & special trails</p>
-      <p><strong>Elite:</strong> $40/month - All-access + gear discount</p>
-      <button class="btn">Choose Plan</button>
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="modal-body"></div>
     </div>
   </div>
 
   <script>
-    const joinBtn = document.getElementById("joinBtn");
-    const subscribeBtn = document.getElementById("subscribeBtn");
+    const modal = document.getElementById('modal');
+    const modalBody = document.getElementById('modal-body');
 
-    joinBtn.addEventListener("click", () => openModal("joinModal"));
-    subscribeBtn.addEventListener("click", () => openModal("subscribeModal"));
-
-    function openModal(id) {
-      document.getElementById(id).style.display = "flex";
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).style.display = "none";
-    }
-
-    window.onclick = function(e) {
-      document.querySelectorAll('.modal').forEach(m => {
-        if (e.target === m) m.style.display = "none";
-      });
+    const activities = {
+      mountain: {
+        title: 'Mountain Trails',
+        desc: 'Conquer majestic peaks with our guided mountain expeditions. Perfect for adventure seekers and fitness enthusiasts.',
+        images: ['https://source.unsplash.com/600x400/?mountain,hiking', 'https://source.unsplash.com/600x400/?mountain,trail']
+      },
+      forest: {
+        title: 'Forest Walks',
+        desc: 'Reconnect with nature on our tranquil forest paths. Breathe in the fresh air and enjoy serene greenery.',
+        images: ['https://source.unsplash.com/600x400/?forest,walk', 'https://source.unsplash.com/600x400/?forest,path']
+      },
+      beach: {
+        title: 'Coastal Treks',
+        desc: 'Experience the ocean breeze and discover hidden beaches along our coastal hiking routes.',
+        images: ['https://source.unsplash.com/600x400/?beach,trek', 'https://source.unsplash.com/600x400/?coast,hike']
+      },
+      adventure: {
+        title: 'Adventure Activities',
+        desc: 'Push your limits with thrilling activities like ziplining, rock climbing, and river rafting!',
+        images: ['https://source.unsplash.com/600x400/?zipline,adventure', 'https://source.unsplash.com/600x400/?climbing,rocks']
+      },
+      subscribe: {
+        title: 'Join or Subscribe',
+        desc: `
+          <h3>Subscription Plans:</h3>
+          <ul>
+            <li><b>Basic:</b> ₹999/month – Access to guided hikes</li>
+            <li><b>Premium:</b> ₹1999/month – Includes adventure activities</li>
+            <li><b>Elite:</b> ₹2999/month – All-access pass + premium gear</li>
+          </ul>
+          <button onclick="showJoinForm()" class="join-btn">Join Now</button>
+          <div id="join-form" style="display:none;margin-top:16px;">
+            <h3>Enter your details:</h3>
+            <input type="text" placeholder="Name" /><br>
+            <input type="number" placeholder="Age" /><br>
+            <input type="email" placeholder="Email" /><br>
+            <button class="join-btn">Submit</button>
+          </div>
+        `
+      }
     };
+
+    function openModal(type) {
+      const data = activities[type];
+      if (!data) return;
+      modalBody.innerHTML = `
+        <h2>${data.title}</h2>
+        <p>${data.desc}</p>
+        ${data.images ? `<div class="gallery">${data.images.map(img => `<img src="${img}" alt="${data.title}"/>`).join('')}</div>` : data.desc}
+      `;
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    function showJoinForm() {
+      document.getElementById('join-form').style.display = 'block';
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) modal.style.display = 'none';
+    }
   </script>
 </body>
 </html>
